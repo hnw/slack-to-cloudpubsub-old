@@ -1,0 +1,25 @@
+# See https://cloud.google.com/appengine/docs/standard/php/config/appref for a
+# complete list of `app.yaml` directives.
+
+runtime: php72
+entrypoint: serve index.php
+
+handlers:
+- url: /js
+  static_dir: static/js
+- url: /css
+  static_dir: static/css
+- url: /
+  static_files: static/index.html
+  upload: static/index\.html
+- url: /.*\.php
+  script: auto
+
+env_variables:
+    GOOGLE_STORAGE_BUCKET: ""
+    # populate these to use the "mysql" or "postres" backends
+    CLOUDSQL_CONNECTION_NAME: ""
+    CLOUDSQL_USER: ""
+    CLOUDSQL_PASSWORD: ""
+    ## Uncomment to give your database a name other than "bookshelf"
+    # CLOUDSQL_DATABASE_NAME: ""
